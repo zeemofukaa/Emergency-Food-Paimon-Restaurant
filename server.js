@@ -1,3 +1,5 @@
+const path = require('path');
+
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
@@ -15,6 +17,9 @@ app.use(express.json());
 // Serve your existing frontend files
 app.use(express.static(__dirname));
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'code.html'));
+});
 // Health check route
 app.get('/api/ping', (req, res) => {
   res.json({ message: 'Server is running', timestamp: new Date() });
