@@ -1,0 +1,331 @@
+[
+  {
+    "id": 1,
+    "category": "starter",
+    "type": "veg",
+    "name": "Panipuri",
+    "description": "An appetizer served with a green dipping sauce. The crispy deep-fried balls are stuffed with a delicious filling through a hole on the top.",
+    "price": 150,
+    "image": "menu_items/starter/veg/1.webp"
+  },
+  {
+    "id": 2,
+    "category": "starter",
+    "type": "veg",
+    "name": "Samosa (2pcs)",
+    "description": "A deep-fried snack. Each golden, crispy pocket is stuffed full with a soft, glutinous filling.",
+    "price": 150,
+    "image": "menu_items/starter/veg/2.webp"
+  },
+  {
+    "id": 3,
+    "category": "starter",
+    "type": "veg",
+    "name": "Pita Pocket",
+    "description": "A bread with varied fillings. The flat dough has puffed up in the oven and is usually cut into pockets.",
+    "price": 150,
+    "image": "menu_items/starter/veg/3.webp"
+  },
+  {
+    "id": 4,
+    "category": "starter",
+    "type": "veg",
+    "name": "Fried Radish Balls",
+    "description": "Fragrant and crispy air-fried radish balls.",
+    "price": 150,
+    "image": "menu_items/starter/veg/4.webp"
+  },
+  {
+    "id": 5,
+    "category": "starter",
+    "type": "veg",
+    "name": "Sautéed Matsutake",
+    "description": "Sautéed slices of Matsutake cooked in butter, crisp outside yet tender inside.",
+    "price": 150,
+    "image": "menu_items/starter/veg/5.webp"
+  },
+
+  {
+    "id": 6,
+    "category": "starter",
+    "type": "nonveg",
+    "name": "Shawarma Wrap",
+    "description": "A wrap filled with roasted meat shaved from a vertical skewer with vegetables and sauces.",
+    "price": 150,
+    "image": "menu_items/starter/non-veg/1.webp"
+  },
+  {
+    "id": 7,
+    "category": "starter",
+    "type": "nonveg",
+    "name": "Omurice Waltz",
+    "description": "Half-fried beaten egg poured over rice with tomato ketchup.",
+    "price": 150,
+    "image": "menu_items/starter/non-veg/2.webp"
+  },
+  {
+    "id": 8,
+    "category": "starter",
+    "type": "nonveg",
+    "name": "Sweet Shrimp Sushi",
+    "description": "Fresh shrimp laid over rice and shaped by hand.",
+    "price": 150,
+    "image": "menu_items/starter/non-veg/3.webp"
+  },
+  {
+    "id": 9,
+    "category": "starter",
+    "type": "nonveg",
+    "name": "Grilled Tiger Fish",
+    "description": "Lightly seasoned fish kebab grilled over an open flame.",
+    "price": 80,
+    "image": "menu_items/starter/non-veg/4.webp"
+  },
+  {
+    "id": 10,
+    "category": "starter",
+    "type": "nonveg",
+    "name": "Flaming Red Bolognese",
+    "description": "Bolognese covered with a rich, meaty sauce.",
+    "price": 80,
+    "image": "menu_items/starter/non-veg/5.webp"
+  },
+
+  {
+    "id": 11,
+    "category": "main",
+    "type": "veg",
+    "name": "Invigorating Pizza",
+    "description": "Cheesy mushroom pizza with gooey texture when warm.",
+    "price": 150,
+    "image": "menu_items/main course/veg/1.webp"
+  },
+  {
+    "id": 12,
+    "category": "main",
+    "type": "veg",
+    "name": "Energizing Bento",
+    "description": "A perfect bento box for hungry cat lovers.",
+    "price": 150,
+    "image": "menu_items/main course/veg/2.webp"
+  },
+  {
+    "id": 13,
+    "category": "main",
+    "type": "veg",
+    "name": "Vegetarian Abalone",
+    "description": "Golden fried Matsutake slices with sauce, inspired by abalone.",
+    "price": 150,
+    "image": "menu_items/main course/veg/3.webp"
+  },
+  {
+    "id": 14,
+    "category": "main",
+    "type": "veg",
+    "name": "A Buoyant Breeze",
+    "description": "A ratatouille-style dish with simple traditional ingredients.",
+    "price": 150,
+    "image": "menu_items/main course/veg/4.webp"
+  },
+  {
+    "id": 15,
+    "category": "main",
+    "type": "veg",
+    "name": "The Endeavor",
+    "description": "Ancient Sumeru dish with baked bread, beans, and yogurt sauce.",
+    "price": 150,
+    "image": "menu_items/main course/veg/5.webp"
+  },
+
+  {
+    "id": 16,
+    "category": "main",
+    "type": "nonveg",
+    "name": "Tandoori Roast Chicken",
+    "description": "Chicken marinated with spices and roasted in a tandoor.",
+    "price": 150,
+    "image": "menu_items/main course/non-veg/1.webp"
+  },
+  {
+    "id": 17,
+    "category": "main",
+    "type": "nonveg",
+    "name": "Pile 'Em Up",
+    "description": "A rich dish of steaks, potatoes, and cheese.",
+    "price": 150,
+    "image": "menu_items/main course/non-veg/2.webp"
+  },
+  {
+    "id": 18,
+    "category": "main",
+    "type": "nonveg",
+    "name": "Outrider's Champion Steak",
+    "description": "A classic champion-style steak.",
+    "price": 150,
+    "image": "menu_items/main course/non-veg/3.webp"
+  },
+  {
+    "id": 19,
+    "category": "main",
+    "type": "nonveg",
+    "name": "All-Weather Beauty",
+    "description": "Air-dried fish grilled slowly over charcoal.",
+    "price": 80,
+    "image": "menu_items/main course/non-veg/4.webp"
+  },
+  {
+    "id": 20,
+    "category": "main",
+    "type": "nonveg",
+    "name": "Biryani",
+    "description": "Spiced meat cooked with long-grain rice and petals.",
+    "price": 80,
+    "image": "menu_items/main course/non-veg/5.webp"
+  },
+
+  {
+    "id": 21,
+    "category": "dessert",
+    "type": "left",
+    "name": "Stormcrest Pie",
+    "description": "A rich savory pie with smoky flavor.",
+    "price": 150,
+    "image": "menu_items/desserts/1.webp"
+  },
+  {
+    "id": 22,
+    "category": "dessert",
+    "type": "left",
+    "name": "Halvamazd",
+    "description": "Candied nut dessert cooked with almond and butter.",
+    "price": 150,
+    "image": "menu_items/desserts/2.webp"
+  },
+  {
+    "id": 23,
+    "category": "dessert",
+    "type": "left",
+    "name": "La Lettre a Focalors",
+    "description": "Almond-coffee flavoured cake in rectangular shape.",
+    "price": 150,
+    "image": "menu_items/desserts/3.webp"
+  },
+  {
+    "id": 24,
+    "category": "dessert",
+    "type": "left",
+    "name": "Lighter-than-air Pancake",
+    "description": "Fluffy pancakes with berry sauce.",
+    "price": 150,
+    "image": "menu_items/desserts/4.webp"
+  },
+  {
+    "id": 25,
+    "category": "dessert",
+    "type": "right",
+    "name": "Fish-Flavoured Toast",
+    "description": "Toast made from tomato, onion, milk, and flour.",
+    "price": 150,
+    "image": "menu_items/desserts/5.webp"
+  },
+  {
+    "id": 26,
+    "category": "dessert",
+    "type": "right",
+    "name": "A Leisurely Sip",
+    "description": "Kitten-shaped dessert with tea on the side.",
+    "price": 150,
+    "image": "menu_items/desserts/6.webp"
+  },
+  {
+    "id": 27,
+    "category": "dessert",
+    "type": "right",
+    "name": "Snow of the Hearth",
+    "description": "Sakura-covered rice dessert.",
+    "price": 150,
+    "image": "menu_items/desserts/7.webp"
+  },
+  {
+    "id": 28,
+    "category": "dessert",
+    "type": "right",
+    "name": "Almond Tofu",
+    "description": "Silky-smooth almond-flavoured dessert.",
+    "price": 80,
+    "image": "menu_items/desserts/8.webp"
+  },
+
+  {
+    "id": 29,
+    "category": "drinks",
+    "type": "left",
+    "name": "Fruity Duet",
+    "description": "Dual-flavoured fruity beverage with pulp and smoothie layers.",
+    "price": 150,
+    "image": "menu_items/drinks/1.webp"
+  },
+  {
+    "id": 30,
+    "category": "drinks",
+    "type": "left",
+    "name": "Rainbow Aster",
+    "description": "Lavender melon drink with milk, mint, and floral notes.",
+    "price": 150,
+    "image": "menu_items/drinks/2.webp"
+  },
+  {
+    "id": 31,
+    "category": "drinks",
+    "type": "left",
+    "name": "Apple Cider",
+    "description": "Freshly squeezed non-alcoholic apple beverage.",
+    "price": 150,
+    "image": "menu_items/drinks/3.webp"
+  },
+  {
+    "id": 32,
+    "category": "drinks",
+    "type": "left",
+    "name": "Sparkling Berry Juice",
+    "description": "Valberries with sparkling water.",
+    "price": 150,
+    "image": "menu_items/drinks/4.webp"
+  },
+  {
+    "id": 33,
+    "category": "drinks",
+    "type": "right",
+    "name": "Sunset Berry Tea",
+    "description": "Fruity tea with a pleasant sour aroma.",
+    "price": 150,
+    "image": "menu_items/drinks/5.webp"
+  },
+  {
+    "id": 34,
+    "category": "drinks",
+    "type": "right",
+    "name": "Fruits of the Festival",
+    "description": "Layered juice of Sunsettia and Wolfhook.",
+    "price": 150,
+    "image": "menu_items/drinks/6.webp"
+  },
+  {
+    "id": 35,
+    "category": "drinks",
+    "type": "right",
+    "name": "Minty Fruit Tea",
+    "description": "Refreshing tea with lemon and mint.",
+    "price": 150,
+    "image": "menu_items/drinks/7.webp"
+  },
+  {
+    "id": 36,
+    "category": "drinks",
+    "type": "right",
+    "name": "Dango Milk",
+    "description": "Fermented dango milk beverage.",
+    "price": 80,
+    "image": "menu_items/drinks/8.webp"
+  }
+]

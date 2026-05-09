@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>restaurant</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="#" class="nav-branding">PAIMON</a>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="#" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="#menu" class="nav-link">Menu</a>
+        </li>
+        <li class="nav-item">
+          <a href="#about_us" class="nav-link">About us</a>
+        </li>
+        <li class="nav-item">
+          <a href="#contact" class="nav-link">Contact</a>
+        </li>
+      </ul>
+      <div class="cart_ham">
+        <div class="cart">
+          <i class="material-symbols-outlined" id="btnCart">shopping_cart</i>
+          <span class="cartQty">0</span>
+        </div>
+        <button class="auth-btn" id="authBtn" onclick="openAuthModal()">Login</button>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+      <div class="cart-menu">
+        <div class="cart-content">
+          <h2>Your Cart</h2>
+          <p>this is a shopping cart</p>
+          <button class="buymoreBtn">Buy More</button>
+          <div class="cart-items cart-items-js empty">Your Cart is Empty!</div>
+          <button class="checkoutBtn">Checkout</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <section id="home">
+    <div class="home_banner">
+      <img class="logo" src="assets/logo.png">
+    </div>
+    <div class="explore_our_menu">
+      <a href="#menu"><button class="explore_our_menu_btn">Explore our Menu</button></a>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div class="row row1">
+        <div class="row1_col1 column"><a>ORDER<br>ONLINE</a></div>
+        <div class="row1_col2 column"><img src="assets/111.jpg"></div>
+        <div class="row1_col3 column"><a href="#menu">MENU</a></div>
+        <div class="row1_col4 column"><img src="assets/32.avif"></div>
+      </div>
+      <div class="row row2">
+        <div class="row2_col1 column"><img src="assets/36.png"></div>
+        <div class="row2_col2 column"><a href="#about_us">ABOUT US</a></div>
+        <div class="row2_col3 column"><img src="assets/8.jpg"></div>
+      </div>
+      <div class="row row3">
+        <div class="row3_col1 column">
+          <img src="assets/10.webp">
+        </div>
+        <div class="row3_col2 column">
+          <a>CONTACT &<br>LOCATION</a>
+        </div>
+        <div class="row3_col3 column">
+          <img src="assets/14.png">
+        </div>
+        <div class="row3_col4 column">
+          <img src="assets/foodbg.jpg">
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="menu">
+    <div class="menu_banner"></div>
+    <h2 class="menu_heading">MENU</h2>
+    
+    <ul class="menu_list">
+      <li><a href="#starter">Starter</a></li>
+      <li><a href="#main">Main Course</a></li>
+      <li><a href="#dessert">Desserts</a></li>
+      <li><a href="#drinks">Drinks</a></li>
+    </ul>
+    
+    <div id="menu-container"></div>
+  </section>
+
+  <section id="about_us">
+    <div class="about_us_content">
+      <h2>About Us</h2>
+      <p>Welcome to Paimon Restaurant, your gateway to authentic Asian cuisine in Sumeru, Teyvat. Our passion for rich,
+        diverse flavors is reflected in our menu, featuring dishes from across Asia. From savory, spicy curries
+        to
+        dessert delights, every dish is crafted with fresh ingredients and traditional spices.
+
+        Our experienced chefs bring generations of culinary expertise to your table, ensuring a memorable dining
+        experience. Whether you're here for a family meal, a romantic dinner, or a celebration, our warm and welcoming
+        atmosphere awaits you.
+
+        Join us at Paimon Restaurant and discover the true taste of Asia.</p>
+    </div>
+
+  </section>
+  <section id="contact">
+    <div class="panel1">
+      <ul class="left">
+        <li><a href="#">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about_us">About us</a></li>
+      </ul>
+      <ul class="middle">
+        <li>
+          <p>Follow us</p>
+        </li>
+        <li>
+          <div class="socials">
+            <a href="https://www.youtube.com/shorts/niSRI-P9LR4"><i class="fa fa-facebook"></i></a>
+            <a href="https://www.youtube.com/watch?v=ABZPuNcJpGc"><i class="fa fa-instagram"></i></a>
+          </div>
+        </li>
+      </ul>
+      <ul class="right">
+        <li><button>9045XXXXXX</button></li>
+        <li>
+          <p>Near Puspa Cafe, Sumeru City, Teyvat</p>
+        </li>
+      </ul>
+    </div>
+    <div class="panel2">
+      <p>paimon © 2024 website designed by zeemofukaa_</p>
+    </div>
+  </section>
+  <!-- Auth Modal -->
+  <div class="auth-overlay" id="authOverlay" onclick="closeAuthModal()"></div>
+  <div class="auth-modal" id="authModal">
+    <h2 id="authTitle">Login</h2>
+    <p class="auth-error" id="authError"></p>
+
+    <input type="text" id="authName" placeholder="Your name" style="display:none"/>
+    <input type="email" id="authEmail" placeholder="Email"/>
+    <input type="password" id="authPassword" placeholder="Password"/>
+
+    <button class="auth-submit-btn" onclick="submitAuth()">Login</button>
+    <p class="auth-switch">Don't have an account? <span onclick="toggleAuthMode()">Sign up</span></p>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
