@@ -26,7 +26,7 @@
           <a href="#contact" class="nav-link">Contact</a>
         </li>
       </ul>
-      <div class="cart_ham">
+      <div  class="cart_ham">
         <div class="cart">
           <i class="material-symbols-outlined" id="btnCart">shopping_cart</i>
           <span class="cartQty">0</span>
@@ -60,7 +60,7 @@
   <section>
     <div class="container">
       <div class="row row1">
-        <div class="row1_col1 column"><a>ORDER<br>ONLINE</a></div>
+        <div class="row1_col1 column" onclick="openReservationModal()"><a>MAKE A<br>RESERVATION</a></div>
         <div class="row1_col2 column"><img src="assets/111.jpg"></div>
         <div class="row1_col3 column"><a href="#menu">MENU</a></div>
         <div class="row1_col4 column"><img src="assets/32.avif"></div>
@@ -75,7 +75,7 @@
           <img src="assets/10.webp">
         </div>
         <div class="row3_col2 column">
-          <a>CONTACT &<br>LOCATION</a>
+          <a href="#contact">CONTACT &<br>LOCATION</a>
         </div>
         <div class="row3_col3 column">
           <img src="assets/14.png">
@@ -145,6 +145,7 @@
       <p>paimon © 2024 website designed by zeemofukaa_</p>
     </div>
   </section>
+
   <!-- Auth Modal -->
   <div class="auth-overlay" id="authOverlay" onclick="closeAuthModal()"></div>
   <div class="auth-modal" id="authModal">
@@ -157,6 +158,44 @@
 
     <button class="auth-submit-btn" onclick="submitAuth()">Login</button>
     <p class="auth-switch">Don't have an account? <span onclick="toggleAuthMode()">Sign up</span></p>
+  </div>
+
+  <!-- Reservation Modal -->
+  <div class="reservation-overlay" id="reservationOverlay" onclick="closeReservationModal()"></div>
+  <div class="reservation-modal" id="reservationModal">
+    <h2>Reserve a Table</h2>
+    <p class="reservation-error" id="reservationError"></p>
+
+    <div class="reservation-field">
+      <label>Your Name</label>
+      <input type="text" id="resName" placeholder="Name on reservation"/>
+    </div>
+    <div class="reservation-field">
+      <label>Date</label>
+      <input type="date" id="resDate"/>
+    </div>
+    <div class="reservation-field">
+      <label>Time</label>
+      <input type="time" id="resTime"/>
+    </div>
+    <div class="reservation-field">
+      <label>Guests</label>
+      <input type="number" id="resGuests" placeholder="Number of guests" min="1" max="20"/>
+    </div>
+    <div class="reservation-field">
+      <label>Special Request <span style="opacity:0.6">(optional)</span></label>
+      <textarea id="resNote" placeholder="Allergies, special occasions..."></textarea>
+    </div>
+
+    <button class="reservation-submit-btn" onclick="submitReservation()">Book Table</button>
+    <button class="reservation-cancel-btn" onclick="closeReservationModal()">Cancel</button>
+
+    <!-- My Bookings toggle -->
+    <p class="view-bookings-link" onclick="toggleMyBookings()">
+      <span>View my bookings</span>
+      <span class="bookings-arrow">▾</span>
+    </p>
+    <div id="myBookings" style="display:none"></div>
   </div>
   <script src="script.js"></script>
 </body>

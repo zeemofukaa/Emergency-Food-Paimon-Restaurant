@@ -10,7 +10,7 @@ function showToast(message, isError = false) {
 
   const toast = document.createElement('div');
   toast.id = 'toast';
-  toast.textContent = message;
+  toast.innerHTML = message;
   toast.style.cssText = `
     position: fixed;
     bottom: 32px;
@@ -64,6 +64,7 @@ function updateAuthButton() {
    AUTH MODAL
 =========================== */
 function openAuthModal() {
+  document.body.classList.add("modal-open");
   if (currentUser) {
     // already logged in — logout instead
     token = null;
@@ -80,6 +81,7 @@ function openAuthModal() {
 }
 
 function closeAuthModal() {
+  document.body.classList.remove("modal-open");
   document.getElementById("authOverlay").classList.remove("active");
   document.getElementById("authModal").classList.remove("active");
   document.getElementById("authError").textContent = "";
@@ -114,8 +116,19 @@ async function submitAuth() {
   const name     = document.getElementById("authName").value.trim();
   const errorEl  = document.getElementById("authError");
 
+  // basic presence check
   if (!email || !password) return (errorEl.textContent = "Please fill in all fields");
   if (isSignupMode && !name) return (errorEl.textContent = "Please enter your name");
+
+  // email format check
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) return (errorEl.textContent = "Please enter a valid email address");
+
+  // password length check
+  if (password.length < 6) return (errorEl.textContent = "Password must be at least 6 characters");
+
+  // name sanity check (signup only)
+  if (isSignupMode && name.length < 2) return (errorEl.textContent = "Please enter your full name");
 
   const url  = isSignupMode ? `${API}/api/auth/signup` : `${API}/api/auth/login`;
   const body = isSignupMode ? { name, email, password } : { email, password };
@@ -197,6 +210,22 @@ window.addEventListener("scroll", () => {
   });
 });
 
+/* ===========================
+   SCROLL FADE-IN
+=========================== */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.about_us_content, .menu_list_heading, .card')
+  .forEach(el => {
+    el.classList.add('fade-in');
+    observer.observe(el);
+  });
 
 /* ===========================
    MENU FETCH + RENDER
@@ -224,6 +253,12 @@ function buildMenu(menu) {
   });
 
   renderCards(menu);
+
+  document.querySelectorAll('.about_us_content, .menu_list_heading, .card')
+    .forEach(el => {
+      el.classList.add('fade-in');
+      observer.observe(el);
+    });
 }
 
 function renderCards(menu) {
@@ -484,3 +519,151 @@ document.querySelector(".checkoutBtn").addEventListener("click", async e => {
 =========================== */
 updateAuthButton();
 if (token) loadCart(); // restore cart on page load if already logged in
+
+/* ===========================
+   RESERVATION
+=========================== */
+function openReservationModal() {
+  document.body.classList.add("modal-open");
+  if (!token) {
+    showToast('Please login to make a reservation');
+    openAuthModal();
+    return;
+  }
+
+  // set minimum date to today
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('resDate').min = today;
+
+  // prefill name if logged in
+  if (currentUser) document.getElementById('resName').value = currentUser.name;
+
+  document.getElementById('reservationOverlay').classList.add('active');
+  document.getElementById('reservationModal').classList.add('active');
+}
+
+function closeReservationModal() {
+  document.getElementById('reservationOverlay').classList.remove('active');
+  document.getElementById('reservationModal').classList.remove('active');
+  document.getElementById('reservationError').textContent = '';
+  document.getElementById('myBookings').style.display = 'none';
+  document.querySelector('.view-bookings-link').classList.remove('open');
+  document.body.classList.remove("modal-open");
+}
+
+async function submitReservation() {
+  const errorEl = document.getElementById('reservationError');
+  const name    = document.getElementById('resName').value.trim();
+  const date    = document.getElementById('resDate').value;
+  const time    = document.getElementById('resTime').value;
+  const guests  = document.getElementById('resGuests').value;
+  const note    = document.getElementById('resNote').value.trim();
+
+  if (!name || !date || !time || !guests) {
+    return (errorEl.textContent = 'Please fill in all required fields');
+  }
+
+  if (parseInt(guests) < 1 || parseInt(guests) > 20) {
+    return (errorEl.textContent = 'Guests must be between 1 and 20');
+  }
+
+  try {
+    const res  = await fetch(`${API}/api/reservations`, {
+      method:  'POST',
+      headers: getHeaders(),
+      body:    JSON.stringify({ name, date, time, guests, note }),
+    });
+    const data = await res.json();
+
+    if (!res.ok) return (errorEl.textContent = data.error || 'Booking failed');
+
+    closeReservationModal();
+    showToast(`<div class="toast-content">
+      Table booked for ${date} at ${time}
+      <span class="material-symbols-outlined">restaurant</span>
+    </div>`);
+
+  } catch (err) {
+    errorEl.textContent = 'Network error, try again';
+  }
+}
+
+async function deleteReservation(id) {
+  try {
+    const res = await fetch(`${API}/api/reservations/${id}`, {
+      method: 'DELETE',
+      headers: getHeaders()
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      return showToast(data.error || 'Failed to cancel reservation', true);
+    }
+
+    showToast('Reservation cancelled!');
+
+    // refresh bookings list
+    toggleMyBookings();
+    toggleMyBookings();
+
+  } catch (err) {
+    showToast('Network error', true);
+  }
+}
+
+async function toggleMyBookings() {
+  const container = document.getElementById('myBookings');
+  const link      = document.querySelector('.view-bookings-link');
+
+  if (container.style.display === 'flex') {
+    container.style.display = 'none';
+    link.classList.remove('open');
+    return;
+  }
+
+  try {
+    const res  = await fetch(`${API}/api/reservations`, { headers: getHeaders() });
+    const data = await res.json();
+
+    if (!data.length) {
+      container.innerHTML = `<p style="color:rgba(236,210,174,0.6);text-align:center;font-size:13px">No bookings yet</p>`;
+    } else {
+      container.innerHTML = data.map(r => `
+        <div class="booking-card">
+          <strong>${r.name}</strong> · ${r.guests} guest${r.guests > 1 ? 's' : ''}
+
+          <div class="booking-row">
+            <span class="material-symbols-outlined booking-icon">
+              calendar_month
+            </span>
+            <span>${r.date} at ${r.time}</span>
+          </div>
+
+          ${r.note ? `
+            <div class="booking-row">
+              <span class="material-symbols-outlined booking-icon">
+                edit_note
+              </span>
+              <span>${r.note}</span>
+            </div>
+          ` : ''}
+          <button
+            class="delete-booking-btn"
+            onclick="deleteReservation('${r._id}')"
+          >
+            Cancel Reservation
+          </button>
+        </div>
+      `).join('');
+    }
+
+    container.style.display = 'flex';
+    link.classList.add('open');
+    
+
+  } catch (err) {
+    container.innerHTML = `<p style="color:#ff8a80;font-size:13px">Failed to load bookings</p>`;
+    container.style.display = 'block';
+  }
+}

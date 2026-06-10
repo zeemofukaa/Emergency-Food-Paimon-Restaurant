@@ -16,10 +16,22 @@
   box-sizing: border-box;
   font-family: 'Times New Roman', Times, serif;
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 body {
+  animation: pageFadeIn 0.8s ease forwards;
   background-color: rgba(236, 210, 174, 0.4);
+  overflow-x: hidden;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0;}
+  to   { opacity: 1;}
 }
 
 li {
@@ -505,7 +517,7 @@ header {
 
 
 /* ============================================================
-   GRID SECTION (ORDER ONLINE / MENU / ABOUT US tiles)
+   GRID SECTION (MAKE A RESERVATION / MENU / ABOUT US tiles)
 ============================================================ */
 .container {
   background-color: black;
@@ -906,4 +918,304 @@ h4 {
     text-align: center;
     margin-bottom: 20px;
   }
+}
+
+/* ============================================================
+   RESERVATION MODAL
+============================================================ */
+.reservation-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1001;
+}
+
+.reservation-overlay.active { display: block; }
+
+.reservation-modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(0);
+  will-change: transform;
+  background: rgb(91, 70, 44);
+  border: 3px dashed rgb(236, 210, 174);
+  padding: 36px 32px;
+  border-radius: 12px;
+  z-index: 1002;
+  width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reservation-modal.active { display: flex; }
+
+.reservation-modal h2 {
+  color: rgb(236, 210, 174);
+  font-family: Chopins;
+  font-weight: 500;
+  font-size: 36px;
+  text-align: center;
+  margin: 0 0 4px;
+}
+
+.reservation-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.reservation-field label {
+  color: rgba(236, 210, 174, 0.8);
+  font-size: 13px;
+}
+
+.reservation-modal input,
+.reservation-modal textarea {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgb(236, 210, 174);
+  background: rgba(236, 210, 174, 0.15);
+  color: rgb(236, 210, 174);
+  font-size: 15px;
+  font-family: 'Times New Roman', Times, serif;
+  outline: none;
+}
+
+.reservation-modal textarea {
+  resize: none;
+  height: 70px;
+}
+
+.reservation-modal input::placeholder,
+.reservation-modal textarea::placeholder {
+  color: rgba(236, 210, 174, 0.5);
+}
+
+.reservation-modal input:focus,
+.reservation-modal textarea:focus {
+  background: rgba(236, 210, 174, 0.25);
+}
+
+.reservation-modal input[type="date"],
+.reservation-modal input[type="time"] {
+  color-scheme: dark;
+}
+
+.reservation-modal input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.reservation-modal input[type="number"]::-webkit-outer-spin-button,
+.reservation-modal input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.reservation-submit-btn {
+  padding: 10px;
+  background: rgb(236, 210, 174);
+  color: rgb(91, 70, 44);
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 4px;
+  font-family: 'Times New Roman', Times, serif;
+  transition: 0.3s ease-in;
+}
+
+.reservation-submit-btn:hover {
+  background: rgba(236, 210, 174, 0.85);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.reservation-cancel-btn {
+  padding: 8px;
+  background: transparent;
+  color: rgba(236, 210, 174, 0.7);
+  border: 1px solid rgba(236, 210, 174, 0.4);
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: 'Times New Roman', Times, serif;
+  transition: 0.3s ease-in;
+  margin-top: 0;
+}
+
+.reservation-cancel-btn:hover {
+  border-color: rgb(236, 210, 174);
+  color: rgb(236, 210, 174);
+}
+
+.reservation-error {
+  color: #ff8a80;
+  font-size: 13px;
+  margin: 0;
+  min-height: 18px;
+  text-align: center;
+}
+
+.view-bookings-link {
+  color: rgba(236, 210, 174, 0.7);
+  font-size: 13px;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(236, 210, 174, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: color 0.3s ease;
+}
+
+.view-bookings-link:hover {
+  color: rgb(236, 210, 174);
+}
+
+.bookings-arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.view-bookings-link.open .bookings-arrow {
+  transform: rotate(180deg);
+}
+
+#myBookings {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.booking-card {
+  background: rgba(236, 210, 174, 0.16);
+  border: 1px solid rgba(236, 210, 174, 0.3);
+  border-left: 3px solid rgb(236, 210, 174);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: rgb(236, 210, 174);
+  font-size: 13px;
+  line-height: 1.6;
+  transition: background 0.2s ease;
+}
+
+.booking-card:hover {
+  background: rgba(236, 210, 174, 0.22);
+}
+
+.booking-card strong {
+  font-size: 14px;
+}
+
+.booking-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.booking-icon {
+  font-size: 28px;
+  color: rgb(236, 210, 174);
+  flex-shrink: 0;
+}
+
+.delete-booking-btn {
+  align-self: flex-end;
+
+  background: rgba(91,70,44,0.95);
+  color: rgb(236,210,174);
+
+  border: 1px solid rgb(236,210,174);
+  border-radius: 20px;
+
+  padding: 8px 14px;
+  margin-top: 8px;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.delete-booking-btn:hover {
+  transform: translateY(-1px);
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.toast-content .material-symbols-outlined {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ============================================================
+Button shimmer 
+===============================================================*/
+
+.explore_our_menu_btn,
+.add_to_cart,
+.auth-submit-btn,
+.reservation-submit-btn,
+.delete-booking-btn,
+.checkoutBtn {
+  position: relative;
+  overflow: visible;
+  clip-path: inset(0 round 30px);
+}
+
+.explore_our_menu_btn::after,
+.add_to_cart::after,
+.auth-submit-btn::after,
+.reservation-submit-btn::after,
+.delete-booking-btn::after,
+.checkoutBtn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+
+.explore_our_menu_btn:hover::after,
+.add_to_cart:hover::after,
+.auth-submit-btn:hover::after,
+.reservation-submit-btn:hover::after,
+.delete-booking-btn:hover::after,
+.checkoutBtn:hover::after {
+  left: 125%;
 }
