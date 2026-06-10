@@ -29,15 +29,19 @@ This project focuses on immersive UI design, dynamic rendering, authentication, 
 
 • User authentication (Login / Signup)
 
-• Persistent cart storage
+• Persistent cart storage using MongoDB
 
-• Order history system
+• Order placement and order history tracking
+
+• Table reservation system
+
+• Reservation history
+
+• Reservation cancellation
 
 • Backend-driven menu APIs
 
 • Secure JWT authentication
-
-• MongoDB database integration
 
 ---
 
