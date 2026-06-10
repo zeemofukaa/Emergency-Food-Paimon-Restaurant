@@ -11,37 +11,25 @@ This project focuses on immersive UI design, dynamic rendering, authentication, 
 
 ✦ **Features**
 
-• Dynamic menu rendering using JSON data
+• Dynamic menu rendering from backend APIs
 
-• Categorized food sections (Starter, Main Course, Desserts, Drinks)
+• Categorized menu sections (Starters, Main Course, Desserts, Drinks)
 
-• Responsive design for desktop and mobile
+• User authentication and secure JWT-based login
 
-• Interactive shopping cart system
-
-• Quantity controls & cart item management
-
-• Animated mobile navigation menu
-
-• Fantasy-themed UI inspired by Teyvat
-
-• Dynamic DOM rendering instead of repetitive static HTML
-
-• User authentication (Login / Signup)
-
-• Persistent cart storage using MongoDB
+• Persistent shopping cart with quantity management
 
 • Order placement and order history tracking
 
-• Table reservation system
+• Table reservations with booking history and cancellation
 
-• Reservation history
+• MongoDB-backed user data persistence
 
-• Reservation cancellation
+• Responsive design for desktop and mobile devices
 
-• Backend-driven menu APIs
+• Animated navigation and interactive UI components
 
-• Secure JWT authentication
+• Fantasy-themed restaurant experience inspired by Teyvat
 
 ---
 
