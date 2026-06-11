@@ -477,20 +477,29 @@ header {
   display: flex;
   margin-bottom: 0;
   justify-content: center;
+  position: relative;
 }
 
 .logo {
-  box-shadow: 0 0 100px 100px rgba(236, 210, 174, 0.9);
-  border-radius: 100px;
-  width: 25dvb;
+  width: min(220px, 40vw);
   position: absolute;
-  top: 40dvb;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow: 0 0 80px 80px rgba(236, 210, 174, 0.9);
   animation: slide-down 1.5s linear;
 }
 
 @keyframes slide-down {
-  from { transform: translateY(-50dvb); opacity: 1; }
-  to   { transform: translateY(0);      opacity: 1; }
+  from {
+    transform: translate(-50%, calc(-50% - 150px));
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
 }
 
 .section {
@@ -681,17 +690,19 @@ header {
   margin-bottom: 20px;
   background-color: rgb(91, 70, 44);
   color: rgb(236, 210, 174);
+  padding: 20px 20px 6px;
 }
 
 /* Menu cards */
 .card {
   max-width: 900px;
-  margin: auto 25px;
+  margin: 0 0 14px;
   background-color: rgb(236, 210, 174);
   color: rgb(91, 70, 44);
-  border-radius: 15px;
+  border-radius: 14px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   transition: 0.3s;
+  overflow: hidden;
 }
 
 .card:hover {
@@ -699,7 +710,14 @@ header {
 }
 
 .card img {
-  padding: 10px 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: rgba(91, 70, 44, 0.06);
+  border-right: 1px solid rgba(91, 70, 44, 0.15);
+  padding: 8px;
+  display: block;
+  align-self: stretch;
 }
 
 .card p {
@@ -711,8 +729,15 @@ header {
 .part2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin: 1em;
-  padding: 1em;
+  margin: 0;
+  padding: 0;
+  align-items: stretch;
+}
+.part2 > div {
+  padding: 0 0 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 h4 {
@@ -758,20 +783,20 @@ h4 {
     margin: 0 auto;
   }
 
-  .card          { height: 240px; }
-  .card img      { height: 146px; align-self: center; }
+  .card          { height: auto; min-height: 160px; }
+  .card img      { height: 100%; align-self: stretch; }
   .card p        { font-size: 15px; }
   .card h4       { font-size: 17px; }
   .card button   { font-size: 15px; width: 118px; }
 
   .part2 {
-    grid-template-columns: 30% 70%;
-    gap: 20px;
+    grid-template-columns: 35% 65%;
+    gap: 0;
   }
 
   .left_menu,
   .right_menu {
-    padding: 0 0 20px;
+    padding: 20px 20px 6px;
   }
 }
 
@@ -1218,4 +1243,120 @@ Button shimmer
 .delete-booking-btn:hover::after,
 .checkoutBtn:hover::after {
   left: 125%;
+}
+
+/* ============================================================
+   MOBILE FIXES
+============================================================ */
+@media (max-width: 480px) {
+
+  .left_menu,
+  .right_menu {
+    padding: 20px 15px 6px;
+    border-radius: 8px;
+  }
+
+  .card {
+    height: auto;
+    margin: 0 0 14px;
+    border-radius: 14px;
+    overflow: hidden;
+    scrollbar-gutter: auto;
+  }
+
+  .part2 {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .part2 img {
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+    background: rgba(91, 70, 44, 0.06);
+    padding: 8px;
+    border-bottom: 1px solid rgba(91, 70, 44, 0.15);
+    display: block;
+  }
+
+  .part2 > div {
+    padding: 12px 14px 14px;
+  }
+
+  .card h4 {
+    font-size: 17px;
+    margin: 0 0 4px;
+  }
+
+  .card p {
+    font-size: 13px;
+    margin: 0 0 8px;
+  }
+
+  .price {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0 0 10px;
+  }
+
+  .add_to_cart {
+    margin: 0;
+    font-size: 14px;
+    padding: 8px 18px;
+    width: 100%;
+    text-align: center;
+    border-radius: 10px;
+  }
+
+  .menu_list_heading {
+    font-size: 48px;
+  }
+
+  .auth-btn {
+    font-size: 12px;
+    padding: 5px 10px;
+    max-width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 675px){
+  .cart-item {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 8px;
+  }
+
+  .cart-left {
+    flex: 0 0 100%;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .cart-controls {
+    flex: 0 0 auto;
+    gap: 12px;
+  }
+
+  .cart-controls button {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .cart-items button.remove-item {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 6px 16px;
+    font-size: 13px;
+  }
 }
